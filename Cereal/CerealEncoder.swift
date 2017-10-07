@@ -17,7 +17,7 @@ private class CapacitiesHolder: SyncHolder<TypeCapacity> {
     func capacity(forType type: Any.Type) -> Int? {
         var result: Int? = nil
         self.sync {
-            for item in self.values where item.type == type(of: type) {
+            for item in self.values where item.type == Swift.type(of: type) {
                 result = item.capacity
                 break
             }
