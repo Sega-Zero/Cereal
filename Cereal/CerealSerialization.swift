@@ -251,9 +251,7 @@ private extension CoderTreeValue {
 
 extension CoderTreeValue {
     func toData() -> Data {
-        let bytes = self.bytes()
-
-        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
+        return Data(self.bytes())
     }
     func bytes() -> [UInt8] {
         var result = [UInt8]()
@@ -389,7 +387,7 @@ private extension CoderTreeValue {
 
             case .data:
                 let valueBytes = Array(bytes[startIndex..<endIndex])
-                let data = Data(bytes: UnsafePointer<UInt8>(valueBytes), count: valueBytes.count)
+                let data = Data(valueBytes)
                 self = .data(data)
 
             default:
